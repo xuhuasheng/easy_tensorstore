@@ -3,7 +3,7 @@ Description  :
 Version      : 1.0.0
 Author       : Xu Huasheng
 Date         : 2024-01-04 14:09:36
-LastEditTime : 2024-01-05 11:08:10
+LastEditTime : 2024-01-11 09:11:10
 LastEditors  : aircas41-server-win xuhs@aircas.ac.cn
 Copyright (c) 2024 AIRCAS. All rights reserved. 
 """
@@ -26,13 +26,16 @@ t = time.perf_counter()
 data =[[1,2,3], [3,4,5]]
 store_future = ts.open(
     {
-        'driver': 'array',
-        "array": data,
-        'dtype': ts.int8,
+        'driver': 'n5',
+        'kvstore': {
+            'driver': 'file',
+            'path': 'mmmm'
+        }
     },
     create=True,
     delete_existing=True,
-
+    dtype=ts.uint8,
+    shape=img.shape,
 
 )
 store = store_future.result()
